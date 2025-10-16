@@ -1,7 +1,7 @@
 const express = require("express");
 const morgan = require("morgan");
 const session = require("express-session");
-const vercelExpress = require("vercel-express");
+// const vercelExpress = require("vercel-express");
 
 require("dotenv").config({ path: "../config.env" });
 const dbConnection = require("./config/dbConnection");
@@ -49,5 +49,9 @@ app.use((req, res, nxt) => {
 });
 
 app.use(globalError);
+const port = process.env.PORT;
+app.listen(port, () => {
+  console.log(`App is listening po port: ${port}`);
+});
 
-module.exports = vercelExpress(app);
+// module.exports = app;
