@@ -3,7 +3,7 @@ const morgan = require("morgan");
 const session = require("express-session");
 const vercelExpress = require("vercel-express");
 
-require("dotenv").config({ path: "./config.env" });
+require("dotenv").config({ path: "../config.env" });
 const dbConnection = require("../config/dbConnection");
 const authRouter = require("../routes/Auth");
 const profileRouter = require("../routes/Profile");
