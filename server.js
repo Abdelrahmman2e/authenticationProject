@@ -1,10 +1,8 @@
 const express = require("express");
 const morgan = require("morgan");
 const session = require("express-session");
-// const vercelExpress = require("vercel-express");
-const serverless = require("serverless-http");
 
-require("dotenv").config({ path: "../config.env" });
+require("dotenv").config({ path: "./config.env" });
 const dbConnection = require("./config/dbConnection");
 const authRouter = require("./routes/Auth");
 const profileRouter = require("./routes/Profile");
@@ -21,7 +19,7 @@ const app = express();
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.set("view engine", "ejs");
-app.set("views", path.join(__dirname, "../views"));
+app.set("views", path.join(__dirname, "./views"));
 app.use(
   session({
     secret: "SecretKeyq@",
@@ -50,9 +48,9 @@ app.use((req, res, nxt) => {
 });
 
 app.use(globalError);
-// const port = process.env.PORT;
-// app.listen(port, () => {
-//   console.log(`App is listening po port: ${port}`);
-// });
+const port = process.env.PORT;
+app.listen(port, () => {
+  console.log(`App is listening po port: ${port}`);
+});
 
-module.exports.handler = serverless(app);
+module.exports = app;
