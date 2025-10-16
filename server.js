@@ -4,14 +4,14 @@ const session = require("express-session");
 const vercelExpress = require("vercel-express");
 
 require("dotenv").config({ path: "../config.env" });
-const dbConnection = require("../config/dbConnection");
-const authRouter = require("../routes/Auth");
-const profileRouter = require("../routes/Profile");
-const AppError = require("../utils/AppError");
-const globalError = require("../middleware/errorHandlerMW");
+const dbConnection = require("./config/dbConnection");
+const authRouter = require("./routes/Auth");
+const profileRouter = require("./routes/Profile");
+const AppError = require("./utils/AppError");
+const globalError = require("./middleware/errorHandlerMW");
 const passport = require("passport");
 const path = require("path");
-require("../utils/passportSetup");
+require("./utils/passportSetup");
 
 dbConnection();
 
