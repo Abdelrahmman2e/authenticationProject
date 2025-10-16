@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Login - YourAppName</title>
+    <style>
+      @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap");
+
+      /* Reset */
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      body {
+        font-family: "Poppins", sans-serif;
+        background: linear-gradient(135deg, #667eea, #764ba2);
+        height: 100vh;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        color: #fff;
+        overflow: hidden;
+        position: relative;
+      }
+
+      /* Animated background circles */
+      .circle {
+        position: absolute;
+        border-radius: 50%;
+        background: rgba(255, 255, 255, 0.1);
+        animation: float 10s ease-in-out infinite;
+        filter: blur(30px);
+        z-index: 0;
+      }
+
+      .circle:nth-child(1) {
+        width: 250px;
+        height: 250px;
+        top: 10%;
+        left: 15%;
+        animation-delay: 0s;
+      }
+
+      .circle:nth-child(2) {
+        width: 300px;
+        height: 300px;
+        bottom: 15%;
+        right: 20%;
+        animation-delay: 3s;
+      }
+
+      .circle:nth-child(3) {
+        width: 200px;
+        height: 200px;
+        top: 50%;
+        right: 10%;
+        animation-delay: 5s;
+      }
+
+      @keyframes float {
+        0%,
+        100% {
+          transform: translateY(0) translateX(0);
+        }
+        50% {
+          transform: translateY(-20px) translateX(20px);
+        }
+      }
+
+      .login-container {
+        position: relative;
+        z-index: 10;
+        background: rgba(255, 255, 255, 0.1);
+        backdrop-filter: blur(15px);
+        border-radius: 15px;
+        padding: 40px 50px;
+        max-width: 400px;
+        width: 90%;
+        box-shadow: 0 8px 32px rgba(0, 0, 0, 0.37);
+        text-align: center;
+      }
+
+      .login-container h2 {
+        font-weight: 700;
+        font-size: 2.2rem;
+        margin-bottom: 1rem;
+        text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.3);
+      }
+
+      .login-container p {
+        margin-bottom: 2rem;
+        font-size: 1rem;
+        color: #ddd;
+        text-shadow: 1px 1px 6px rgba(0, 0, 0, 0.2);
+      }
+
+      form {
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+      }
+
+      input[type="email"],
+      input[type="password"] {
+        padding: 14px 18px;
+        border-radius: 40px;
+        border: none;
+        outline: none;
+        font-size: 1rem;
+        font-weight: 500;
+        transition: background-color 0.3s ease;
+        background: rgba(255, 255, 255, 0.2);
+        color: #fff;
+        text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.3);
+      }
+
+      input::placeholder {
+        color: #ddd;
+      }
+
+      input[type="email"]:focus,
+      input[type="password"]:focus {
+        background: rgba(255, 255, 255, 0.35);
+      }
+
+      button {
+        background-color: #fff;
+        color: #764ba2;
+        font-weight: 700;
+        padding: 14px 0;
+        border-radius: 40px;
+        border: none;
+        cursor: pointer;
+        font-size: 1.2rem;
+        box-shadow: 0 10px 25px rgba(255, 255, 255, 0.3);
+        transition: background-color 0.3s ease;
+        user-select: none;
+      }
+
+      button:hover {
+        background-color: #e0d3f7;
+      }
+
+      .social-login {
+        display: flex;
+        flex-direction: column;
+        gap: 15px;
+        margin-top: 20px;
+      }
+
+      .social-button {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 10px;
+        padding: 12px 0;
+        border-radius: 40px;
+        font-weight: 700;
+        cursor: pointer;
+        user-select: none;
+        border: none;
+        font-size: 1rem;
+        transition: background-color 0.3s ease;
+        color: white;
+        text-decoration: none;
+      }
+
+      .facebook {
+        background-color: #3b5998;
+      }
+
+      .facebook:hover {
+        background-color: #2d4373;
+      }
+
+      .facebook svg {
+        width: 20px;
+        height: 20px;
+        fill: white;
+      }
+
+      .google {
+        background-color: #db4437;
+      }
+
+      .google:hover {
+        background-color: #a23327;
+      }
+
+      .google svg {
+        width: 20px;
+        height: 20px;
+      }
+
+      .footer-text {
+        margin-top: 20px;
+        font-size: 0.9rem;
+        color: #ccc;
+      }
+
+      /* Responsive */
+      @media (max-width: 480px) {
+        .login-container {
+          padding: 30px 25px;
+        }
+        .login-container h2 {
+          font-size: 1.8rem;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <!-- Floating background circles -->
+    <div class="circle"></div>
+    <div class="circle"></div>
+    <div class="circle"></div>
+
+    <div class="login-container" role="main" aria-label="Login form">
+      <h2>Login to Your Account</h2>
+      <p>Enter your email and password to continue.</p>
+      <form action="/profile" method="POST" novalidate>
+        <input
+          type="email"
+          name="email"
+          placeholder="Email address"
+          required
+          autocomplete="email"
+        />
+        <input
+          type="password"
+          name="password"
+          placeholder="Password"
+          required
+          autocomplete="current-password"
+        />
+        <button type="submit">Log In</button>
+      </form>
+
+      <div class="social-login">
+        <a
+          href="/auth/facebook"
+          class="social-button facebook"
+          aria-label="Login with Facebook"
+        >
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+            <path
+              d="M22.675 0h-21.35C.6 0 0 .6 0 1.325v21.351C0 23.4.6 24 1.325 24H12.82v-9.294H9.692v-3.622h3.128V8.413c0-3.1 1.894-4.788 4.66-4.788 1.325 0 2.466.099 2.797.143v3.24l-1.918.001c-1.504 0-1.795.715-1.795 1.763v2.312h3.587l-.467 3.622h-3.12V24h6.116C23.4 24 24 23.4 24 22.675v-21.35C24 .6 23.4 0 22.675 0z"
+            />
+          </svg>
+          Login with Facebook
+        </a>
+        <a
+          href="/auth/google"
+          class="social-button google"
+          aria-label="Login with Google"
+        >
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 533.5 544.3">
+            <path
+              fill="#fff"
+              d="M533.5 278.4c0-18.5-1.5-37-4.6-54.6H272.1v103.3h147.7c-6.4 34.5-26.1 63.8-55.7 83.4v69.1h89.8c52.4-48.3 82.3-119.3 82.3-201.2z"
+            />
+            <path
+              fill="#fff"
+              d="M272.1 544.3c74 0 135.9-24.5 181.2-66.4l-89.8-69.1c-24.8 16.6-56.4 26.3-91.4 26.3-70.2 0-129.7-47.5-151-111.3H30.3v69.7c45.1 89 137.3 150.8 241.8 150.8z"
+            />
+            <path
+              fill="#fff"
+              d="M121.1 322.8c-5.4-16.1-8.5-33.2-8.5-50.8 0-17.6 3.1-34.7 8.5-50.8V151.5H30.3c-17.9 34.9-28.2 74.1-28.2 116.4 0 42.3 10.3 81.5 28.2 116.4l90.8-61.5z"
+            />
+            <path
+              fill="#fff"
+              d="M272.1 107.7c39.9 0 75.7 13.7 103.9 40.5l77.9-77.9C400.5 25 343.7 0 272.1 0 167.7 0 75.5 61.8 30.3 151.5l90.8 69.7c21.2-63.8 80.7-111.5 150.9-111.5z"
+            />
+          </svg>
+          Login with Google
+        </a>
+      </div>
+
+      <p class="footer-text">
+        Don't have an account?
+        <a href="/auth/signup" style="color: #fff; text-decoration: underline"
+          >Sign up</a
+        >
+      </p>
+    </div>
+  </body>
+</html>
